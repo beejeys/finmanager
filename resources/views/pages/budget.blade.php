@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Budget</h1>
-<p><a href="/app/budgets/create">Create New</a></p>
+<h1>Budget for {{ isset($month) ? date('F',strtotime('1977-'.$month.'-01')):date('F')}} {{ isset($year) ? $year:date('Y')}}</h1>
 
 @if(session()->has('message'))
     {!! session('message') !!}
@@ -12,17 +11,18 @@
     <p>
         <select name="month">
             @for($i=1;$i<=12;$i++)
-            <option value="{{$i}}"  @if(request()->month==$i) selected @endif>{{date('F',strtotime('1977-'.$i.'-01'))}}</option>
+            <option value="{{$i}}"  @if(isset($month) && $month==$i) selected @endif>{{date('F',strtotime('1977-'.$i.'-01'))}}</option>
             @endfor
         </select>
         <select name="year">
             @for($i=2020;$i<=date('Y')+1;$i++)
-            <option value="{{$i}}" @if(request()->year==$i) selected @endif>{{$i}}</option>
+            <option value="{{$i}}" @if(isset($year) && $year==$i) selected @endif>{{$i}}</option>
             @endfor
         </select>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Change Month" />
     </p>
 </form>
+
 
 <form action="" method="POST" >
     @csrf
@@ -31,11 +31,11 @@
 
 @if(isset($income) && count($income))
 
-<h3>Income categories</h3>
+<h3>Income</h3>
 
 <table cellpadding="10" cellspacing="0" border="1">
     <tr>
-        <th>ID</th>
+        <th>#</th>
         <th>Name</th>
         <th>Budget</th>
     </tr>
@@ -54,11 +54,11 @@
 
 @if(isset($expense) && count($expense))
 
-<h3>Expense categories</h3>
+<h3>Expense</h3>
 
 <table cellpadding="10" cellspacing="0" border="1">
     <tr>
-        <th>ID</th>
+        <th>#</th>
         <th>Name</th>
         <th>Budget</th>
     </tr>
