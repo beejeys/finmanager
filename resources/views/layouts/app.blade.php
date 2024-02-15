@@ -47,7 +47,7 @@
                 <li><a href="/app/expense">Expense</a></li>
                 <li><a href="/app/transfers">Transfers</a></li>
                 <li><a href="/app/budget">Budget</a></li>
-                <li><a href="/app/budget">Profile</a></li>
+                <li><a href="/app/profile">Profile</a></li>
             </ul>
 
         </aside>

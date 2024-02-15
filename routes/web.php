@@ -15,6 +15,10 @@ Route::get('/', function () {
     return redirect('app');
 });
 
+Route::get('login', [App\Http\Controllers\UserController::class,'login']);
+Route::post('login', [App\Http\Controllers\UserController::class,'do_login']);
+Route::get('logout', [App\Http\Controllers\UserController::class,'logout']);
+
 Route::get('app',[App\Http\Controllers\TransactionController::class,'home']);
 Route::get('app/accounts',[App\Http\Controllers\AccountController::class,'index']);
 Route::get('app/accounts/create',[App\Http\Controllers\AccountController::class,'create']);
@@ -53,6 +57,10 @@ Route::get('app/transfers/{id}/del',[App\Http\Controllers\TransactionController:
 
 Route::get('app/budget',[App\Http\Controllers\BudgetController::class,'index']);
 Route::post('app/budget',[App\Http\Controllers\BudgetController::class,'store']);
+
+Route::get('app/profile',[App\Http\Controllers\UserController::class,'profile']);
+Route::post('app/profile',[App\Http\Controllers\UserController::class,'update_profile']);
+
 // Route::get('app/transfers/add',[App\Http\Controllers\TransactionController::class,'create_transfer']);
 // Route::post('app/transfers/add',[App\Http\Controllers\TransactionController::class,'store_transfer']);
 // Route::get('app/transfers/{id}/edit',[App\Http\Controllers\TransactionController::class,'edit_transfer']);
